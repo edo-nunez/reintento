@@ -1,9 +1,90 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detalle-producto</ion-title>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle producto</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+
+<ion-content class="ion-padding">
+
+  <div *ngIf="productoActivo">
+
+    <div class="text-center text-light">
+      <h6>{{productoActivo.category}}</h6>
+    </div>
+    <ion-card>
+
+      <ion-card-content>
+        <ion-card-header>
+          <ion-card-title>{{productoActivo.title }}</ion-card-title>
+          <ion-card-subtitle>{{productoActivo.price | currency: 'CLP'}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-grid>
+          <ion-row>
+            <ion-slides [pager]="true">
+              <ion-slide *ngFor="let elementos of productoActivo.images">
+                <img [src]="elementos" />
+              </ion-slide>
+            </ion-slides>
+
+
+          </ion-row>
+          <ion-row>
+            <br>
+            <p>{{productoActivo.description}}</p>
+          </ion-row>
+          <ion-row class="mt-2 text-dark">
+            <ion-col class="text-dark">
+              <h2>Calificación</h2>
+            </ion-col>
+            <ion-col class="text-end">
+              <ion-icon name="star-half-outline"></ion-icon>&nbsp;{{productoActivo.rating}}
+            </ion-col>
+
+          </ion-row>
+          <ion-row class="mt-2 text-dark">
+            <ion-col class="text-dark">
+              <h2>Cantidad</h2>
+            </ion-col>
+            <ion-col class="text-end">
+              <ion-icon name="cube-sharp"></ion-icon>&nbsp;{{productoActivo.stock}}
+            </ion-col>
+
+          </ion-row>
+          <ion-row class="mt-2 text-dark">
+            <ion-col class="text-dark">
+              <h2>Marca</h2>
+            </ion-col>
+            <ion-col class="text-end">
+              &nbsp;{{productoActivo.brand}}
+            </ion-col>
+
+          </ion-row>
+
+        </ion-grid>
+        <form [formGroup]="enviarCarro" novalidate (ngSubmit)="agregarCarro()">
+          <ion-item>
+            <ion-label position="floating">Cantidad</ion-label>
+            <ion-input placeholder="Seleccione cantidad" type="number" formControlName="quantity"></ion-input>
+            <ion-note slot="error"
+              *ngIf="campo('quantity').invalid  && campo('quantity').errors && campo('quantity').errors.required && seToca('quantity') ">
+              Seleccione una cantidad válida</ion-note>
+          </ion-item>
+          <ion-button expand="block" color="warning" type="submit" [disabled]="!enviarCarro.valid">Agregar al carro
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+
+
+
+
+
+  </div>
 
 </ion-content>
