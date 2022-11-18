@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Página de inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="box">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+          <img
+            src="https://marketplace.canva.com/EAEj17Y_k_k/2/0/1600w/canva-amarillo-y-negro-gamer-desgastado-imagen-de-perfil-de-twitch-41B81rUGLAg.jpg">
+        </ion-col>
+        <ion-col size="6">
+          Bienvenido de nuevo, {{usuario.firstName}}
+        </ion-col>
+        <ion-col size="3">
+          <ion-button [routerLink]="['carrito']"><ion-icon name="cart-outline"></ion-icon></ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <app-lista></app-lista>
+  </div>
+</ion-content>

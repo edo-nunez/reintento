@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Carrito</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="carrito">
+    <div *ngFor="let elemento of carrito.carts">
+      <div *ngFor="let products of elemento.products"></div>
+      <ion-item>
+        <ion-item>
+          <ion-label>
+            <p>{{products.title}}: Precio: {{products.price | currency:'CLP'}}</p>
+            <h2>Cantidad: {{products.quantity}} {{products.total | currency:'CLP'}}</h2>
+          </ion-label>
+        </ion-item>
+      </ion-item>
+
+    </div>
+    <ion-item>
+      <ion-item>
+        <ion-label>
+          <p>Cantidad total</p>
+          <h2>{{products.totalQuantity}}</h2>
+        </ion-label>
+      </ion-item>
+    </ion-item>
+    <ion-item>
+      <ion-item>
+        <ion-label>
+          <p>Productos totales</p>
+          <h2>{{products.totalProducts}}</h2>
+        </ion-label>
+      </ion-item>
+    </ion-item>
+    <ion-button>Pagar {{products.total | currency:'CLP'}}</ion-button>
+  </div>
+
+
+</ion-content>
